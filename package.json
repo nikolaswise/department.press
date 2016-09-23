@@ -4,7 +4,37 @@
   "description": "Department is a design studio specializing in digital experiences, printed matter, and special projects. ",
   "main": "index.js",
   "scripts": {
+    "start": "npm run dev",
+    "predeploy": "npm run predev",
+    "deploy": "surge build/ --domain department.press",
+    "predev": "npm-run-all html css img",
+    "dev": "parallelshell 'http-server build/ --port=8080' 'rerun-script' 'npm run js:watch'",
+    "img": "imagemin-newer source/_assets/img build/assets/img",
+    "prejs": "mkdirp build/js",
+    "js": "simplifyify source/js/app.js -d -o build/js/",
+    "js:watch": "simplifyify source/js/app.js -d -w -o build/js/",
+    "js:production": "npm run js -- -m",
+    "precss": "mkdirp build/css",
+    "css": "myth source/css/style.css build/css/style.css",
+    "html": "static-site -s source -h source/_helpers/*.js -f xml --template _templates/layout.html --block content",
     "test": "test"
+  },
+  "browserify": {
+    "transform": [
+      [
+        "babelify",
+        {
+          "presets": [
+            "es2015"
+          ]
+        }
+      ]
+    ]
+  },
+  "watches": {
+    "css": "source/css/**",
+    "img": "source/img/**",
+    "html": "source/*.*"
   },
   "repository": {
     "type": "git",
@@ -24,9 +54,17 @@
   },
   "homepage": "https://github.com/DepartmentPress/department.press#readme",
   "devDependencies": {
+    "babel-cli": "^6.14.0",
+    "babel-preset-es2015": "^6.14.0",
+    "babelify": "^7.3.0",
     "http-server": "^0.9.0",
+    "imagemin-newer": "^1.0.2",
+    "mkdirp": "^0.5.1",
+    "myth": "github:pin3da/myth",
     "npm-run-all": "^3.1.0",
+    "rerun-script": "^0.6.0",
     "simplifyify": "^2.0.4",
+    "standard": "^8.1.0",
     "static-site": "^1.3.1",
     "surge": "^0.18.0"
   }
