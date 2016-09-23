@@ -1,0 +1,26 @@
+{
+  "name": "department.press",
+  "version": "1.0.0",
+  "description": "Department is a design studio specializing in digital experiences, printed matter, and special projects. ",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DepartmentPress/department.press.git"
+  },
+  "keywords": [
+    "department",
+    "press",
+    "publishing",
+    "design",
+    "studio"
+  ],
+  "author": "Nikolas Wise",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DepartmentPress/department.press/issues"
+  },
+  "homepage": "https://github.com/DepartmentPress/department.press#readme"
+}
